@@ -7,13 +7,13 @@ require_once '../lib/Repository.php';
  *
  * Die Ausführliche Dokumentation zu Repositories findest du in der Repository Klasse.
  */
-class UserRepository extends Repository
+class BenutzerRepository extends Repository
 {
     /**
      * Diese Variable wird von der Klasse Repository verwendet, um generische
      * Funktionen zur Verfügung zu stellen.
      */
-    protected $tableName = 'user';
+    protected $tableName = 'Benutzer';
 
     /**
      * Erstellt einen neuen benutzer mit den gegebenen Werten.
@@ -28,14 +28,14 @@ class UserRepository extends Repository
      *
      * @throws Exception falls das Ausführen des Statements fehlschlägt
      */
-    public function create($firstName, $lastName, $email, $password)
+    public function create($benutzername, $email, $passwort)
     {
-        $password = sha1($password);
+        $passwort = sha1($passwort);
 
-        $query = "INSERT INTO $this->tableName (firstName, lastName, email, password) VALUES (?, ?, ?, ?)";
+        $query = "INSERT INTO $this->tableName (benutzername, email, passwort) VALUES (?, ?, ?)";
 
         $statement = ConnectionHandler::getConnection()->prepare($query);
-        $statement->bind_param('ssss', $firstName, $lastName, $email, $password);
+        $statement->bind_param('sss', $benutzername, $email, $passwort);
 
         if (!$statement->execute()) {
             throw new Exception($statement->error);

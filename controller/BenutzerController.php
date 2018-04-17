@@ -1,20 +1,20 @@
 <?php
 
-require_once '../repository/UserRepository.php';
+require_once '../repository/BenutzerRepository.php';
 
 /**
  * Siehe Dokumentation im DefaultController.
  */
-class UserController
+class BenutzerController
 {
     public function index()
     {
-        $userRepository = new UserRepository();
+        $userRepository = new BenutzerRepository();
 
         $view = new View('user_index');
         $view->title = 'Benutzer';
         $view->heading = 'Benutzer';
-        $view->users = $userRepository->readAll();
+        $view->benutzer = $userRepository->readAll();
         $view->display();
     }
 
@@ -29,26 +29,25 @@ class UserController
     public function doCreate()
     {
         if ($_POST['send']) {
-            $firstName = $_POST['firstName'];
-            $lastName = $_POST['lastName'];
+            $benutzername = $_POST['benutzername'];
             $email = $_POST['email'];
             // $password  = $_POST['password'];
-            $password = 'no_password';
+            $passwort = 'no_password';
 
-            $userRepository = new UserRepository();
-            $userRepository->create($firstName, $lastName, $email, $password);
+            $userRepository = new BenutzerRepository();
+            $userRepository->create($benutzername, $email, $passwort);
         }
 
         // Anfrage an die URI /user weiterleiten (HTTP 302)
-        header('Location: /user');
+        header('Location: /benutzer');
     }
 
     public function delete()
     {
-        $userRepository = new UserRepository();
+        $userRepository = new BenutzerRepository();
         $userRepository->deleteById($_GET['id']);
 
         // Anfrage an die URI /user weiterleiten (HTTP 302)
-        header('Location: /user');
+        header('Location: /benutzer');
     }
 }
