@@ -1,3 +1,126 @@
-body {
-  padding-top: 50px;
+html,body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100%;
+  font-family: 'Exo', sans-serif;
+
+}
+header {
+  color: white;
+  background-color: #011621;
+  /* display: inline-block; */
+  display: table;
+  width: 100%;
+  transition: all 0.4s ease;
+  position: fixed;
+  filter: alpha(opacity=50);
+  z-index: 1;
+
+}
+.intro {
+  height: 100%;
+  width: 100%;
+  margin: auto;
+  display: table;
+  top: 0;
+  background-size: cover;
+
+  background: #6202FF; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #6202FF, #100CE8,#0CA0E8); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #6202FF, #100CE8,#0CA0E8); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background-size: 400% 400%;
+  -webkit-animation: AnimationName 27s ease infinite;
+  -moz-animation: AnimationName 27s ease infinite;
+  animation: AnimationName 27s ease infinite;
+}
+@-webkit-keyframes AnimationName {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+@-moz-keyframes AnimationName {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+@keyframes AnimationName {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+.introBox {
+  display: table-cell;
+  vertical-align: middle;
+  width: 100%;
+  max-width: none;
+  color: white;
+
+}
+.content {
+  max-width: 45%;
+  margin: 0 auto;
+  padding-bottom:30%;
+
+
+
+}
+.content .imgbox {
+  margin-right: 5%;
+  max-width: 40%;
+  max-height: 100%;
+  float: left;
+
+
+}
+.content .imgbox img {
+  max-width: 100%;
+  max-height: 100%;
+  border: solid 2px #0054FF;
+
+
+}
+.content .textbox {
+  margin: 0;
+  padding-left: 10px;
+
+
+}
+.content h1 {
+  font-size: 600%;
+  padding-top: 30px;
+
+}
+.content h3 {
+  font-size: 200%;
+  margin: 0;
+}
+
+.navbar-brand,
+.navbar-nav li a {
+  line-height: 80px;
+  height: 80px;
+  padding-top: 0;
+}
+.navbar-inverse {
+  background-color: #0054FF;
+  border-color: #0054FF;
+
+}
+.navbar-inverse .navbar-brand, .navbar-inverse .navbar-nav>li>a{
+  color: white;
+  font-family: 'Exo', sans-serif;
+  font-size: 150%;
+}
+@media screen and (max-width: 900px) {
+  .content {
+    max-width: 50%;
+    padding-bottom: 50%;
+  }
+  .content h1 {
+    font-size: 400%;
+    padding-top: 10px;
+  }
+
 }
