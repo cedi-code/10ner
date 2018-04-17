@@ -26,6 +26,13 @@ header {
   top: 0;
   background-size: cover;
 
+}
+.intro-70 {
+  height: 70%;
+}
+
+.homeBackground {
+  height: 90%;
   background: #6202FF; /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #6202FF, #100CE8,#0CA0E8); /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to right, #6202FF, #100CE8,#0CA0E8); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -58,10 +65,16 @@ header {
   color: white;
 
 }
-.content {
-  max-width: 45%;
+.indexContentOr {
+  max-width: 60%;
   margin: 0 auto;
-  padding-bottom:25%;
+  padding-bottom:10%;
+  color: black;
+}
+.content {
+  max-width: 50%;
+  margin: 0 auto;
+  padding-bottom:20%;
 
 
 
@@ -90,11 +103,12 @@ header {
 .content h1 {
   font-size: 600%;
   padding-top: 30px;
+  margin: 0;
 
 }
 .content h3 {
   font-size: 200%;
-  margin: 0;
+
 
 }
 
@@ -113,6 +127,21 @@ header {
   color: white;
   font-family: 'Exo', sans-serif;
   font-size: 150%;
+
+
+  transition: all 0.5s ease; /* vendorless fallback */
+  -o-transition: all 0.5s ease; /* opera */
+  -ms-transition: all 0.5s ease; /* IE 10 */
+  -moz-transition: all 0.5s ease; /* Firefox */
+  -webkit-transition: all 0.5s ease; /*safari and chrome */
+}
+.navbar .navbar-brand:hover {
+  transform: scale(1.5);
+  transition: all 0.5s linear;
+}
+.navbar-inverse .navbar-nav >li:hover> a{
+  background-color: #100CE8;
+  transform: scale(1.1);
 }
 @media screen and (max-width: 900px) {
   .content {
