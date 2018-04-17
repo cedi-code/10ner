@@ -36,7 +36,7 @@
                 <li><a href="/">Home</a></li>
                 <li><a href="/rate">Rate</a></li>
                 <li><a href="/">Explore</a></li>
-                <li><a href="/user/create">Login</a></li>
+                <li><a href="/login">Login</a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
