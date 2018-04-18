@@ -11,10 +11,7 @@
             </div>
             <input type="range" min="0" max="10" value="10" class="range"/>
             <p style="padding-top: 10px; display: inline-block" class="bottom">Learn more about the Philosophy from 10ner</p>
-
-            <div class="text-center navbar-fixed-bottom" style="padding-bottom: 10%">
-                <h1>&#x21e9;</h1>
-            </div>
+            
 
         </div>
     </div>
@@ -24,10 +21,10 @@
         <div style="color:#000;" class="indexContentOr ">
             <div class="row">
                 <div class="col-md-6 text-center">
-                    <span class="float-md-left "><div class="textbox text-nowrap"><h3 class="m-3">Rate people by there Looks!</h3></div><img class="img-w-70" src="images/camille.jpg"/></span>
+                    <span class="float-md-left "><div class="textbox text-nowrap"><h3 class="m-3">Rate people by there Looks!</h3></div><img class="img-w-70" src="images/otherBild.jpg"/></span>
                 </div>
                 <div class="col-md-6 text-center">
-                    <span class="float-md-right"><div class="textbox text-nowrap"><h3 class="m-3">Explore other genres</h3></div><img class="img-w-70" src="images/camille.jpg"/></span>
+                    <span class="float-md-right"><div class="textbox text-nowrap"><h3 class="m-3">Explore other genres</h3></div><img class="img-w-70" src="images/cute_pomeranian_dog.jpg"/></span>
                 </div>
             </div>
         </div>

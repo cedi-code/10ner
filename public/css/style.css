@@ -71,7 +71,7 @@ header {
 .indexContentOr {
   max-width: 60%;
   margin: 0 auto;
-  padding-bottom:10%;
+  padding-bottom:0%;
   color: black;
 }
 .content {
@@ -113,6 +113,7 @@ header {
   margin: 0;
 
 }
+
 .content h3 {
   font-size: 200%;
 
