@@ -12,28 +12,57 @@ class BenutzerController
         $view = new View('user_create');
         $view->title = 'Benutzer erstellen';
         $view->heading = 'Benutzer erstellen';
+        $view->errors = [];
         $view->display();
     }
 
     public function doCreate()
     {
+
+        $errors = [];
         if ($_POST['sendUser']) {
+
             $benutzername = $_POST['benutzername'];
             $email = $_POST['email'];
-            $password  = $_POST['password'];
-
+            $passwort = $_POST['passwort'];
             $userRepository = new BenutzerRepository();
-            if ($userRepository->checkEmail($email) == 1) {
-                echo "<script>alert('Email schon vergeben!');</script>";
+            $regexEmail = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$";
+
+            if(
+                empty($benutzername) || 
+                empty($email) || 
+                empty($passwort)
+            ){
+                $errors['required_missing'] = 'Bitte fülle alle Formularfelder aus.';
+            } else if ($userRepository->checkEmail($email) > 0) {
+                $errors['email_exists'] = 'Diese Email existiert bereits.';
             }
-            else if($benutzername) {
-                echo "<script>alert('');</script>";
+            else if (!preg_match($regexEmail, $email)) {
+                $errors['email_regex'] = 'Ungültige Email-Adresse';
             }
-            $userRepository->create($benutzername, $email, $passwort);
+            else if (strlen($benutzername) < 3) {
+                $errors['name_lenght'] = 'Name brauch mindestens 3 Zeichen';
+            }
+            else if (strlen($passwort) < 3) {
+                $errors['pw_lenght'] = 'Passwort brauch mindestens 3 Zeichen';
+            }
+             else {
+                $userRepository->create($benutzername, $email, $passwort);
+            }
         }
 
         // Anfrage an die URI /user weiterleiten (HTTP 302)
-        header('Location: /login');
+        if (empty($errors)) {
+            header('Location: /login');
+            exit;
+        }
+
+        $view = new View('user_create');
+        $view->title = 'Benutzer erstellen';
+        $view->heading = 'Benutzer erstellen';
+        $view->errors = $errors;
+        $view->display();
+
     }
 
     public function delete()

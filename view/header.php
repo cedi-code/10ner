@@ -41,7 +41,3 @@
         </div><!--/.nav-collapse -->
     </div>
 </nav>
-
-
-
-<h1><?= $heading ?></h1>
