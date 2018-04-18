@@ -17,11 +17,11 @@ class BenutzerController
 
     public function doCreate()
     {
+
         if ($_POST['sendUser']) {
             $benutzername = $_POST['benutzername'];
             $email = $_POST['email'];
-            $password  = $_POST['password'];
-
+            $password  = $_POST['passwort'];
             $userRepository = new BenutzerRepository();
             if ($userRepository->checkEmail($email) == 1) {
                 echo "<script>alert('Email schon vergeben!');</script>";
@@ -29,7 +29,8 @@ class BenutzerController
             else if($benutzername) {
                 echo "<script>alert('');</script>";
             }
-            $userRepository->create($benutzername, $email, $passwort);
+            $userRepository->create($benutzername, $email, $password);
+
         }
 
         // Anfrage an die URI /user weiterleiten (HTTP 302)

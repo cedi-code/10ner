@@ -30,14 +30,14 @@ class LoginController extends Repository
             if($repo->checkEmail($_POST['email']) == 1) {
                 $rows = $repo->checkPW($_POST['passwort'],$_POST['email']);
                 if($rows !== false) {
-                    @session_start();
-                    $_SESSION['uid'] = $rows['ID_Ben'];
-                    $_SESSION['benutzername'] =  $rows['benutzername'];
+                    $_SESSION['uid'] = $rows->ID_Ben;
+                    $_SESSION['benutzername'] =  $rows->benutzername;
+                    echo "Success!";
                 }else {
-
+                    echo "Passwort Fail!";
                 }
             }else {
-
+                echo "Email Fail!";
             }
 
         }else {

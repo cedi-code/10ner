@@ -69,11 +69,14 @@ class BenutzerRepository extends Repository
         $result = $statement->get_result();
 
 
-        $row = $result->fetch_row();
-        $hashedPwdCheck = password_verify($pw, $row[3]);
+        $row = $result->fetch_object();
+
+        $hashedPwdCheck = password_verify($pw, $row->passwort);
+
+
         if($hashedPwdCheck === true) {
-            echo "ok";
             return $row;
+
         }else {
             return false;
         }
