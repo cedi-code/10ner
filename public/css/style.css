@@ -30,6 +30,9 @@ header {
 .intro-70 {
   height: 70%;
 }
+.colorMainBlue {
+  color: #0054FF;
+}
 
 .homeBackground {
   height: 90%;
@@ -87,12 +90,16 @@ header {
 
 
 }
-.content .imgbox img {
+.imgbox img {
   max-width: 100%;
   max-height: 100%;
   border: solid 2px #0054FF;
 
 
+}
+.img-w-70 {
+  max-width: 70%;
+  max-height: 70%;
 }
 .content .textbox {
   margin: 0;

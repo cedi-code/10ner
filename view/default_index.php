@@ -2,7 +2,7 @@
     <div class="introBox">
         <div class="content">
             <div class="imgbox">
-                <img src="bild.PNG"/>
+                <img src="images/camille.jpg"/>
             </div>
             <div class="textbox text-nowrap">
                 <h1>10ner</h1>
@@ -24,10 +24,10 @@
         <div style="color:#000;" class="indexContentOr ">
             <div class="row">
                 <div class="col-md-6 text-center">
-                    <span class="float-md-left"><div class="textbox text-nowrap"><h3 class="m-3">Rate people by there Looks!</h3></div><img src="bild.PNG"/></span>
+                    <span class="float-md-left "><div class="textbox text-nowrap"><h3 class="m-3">Rate people by there Looks!</h3></div><img class="img-w-70" src="images/camille.jpg"/></span>
                 </div>
                 <div class="col-md-6 text-center">
-                    <span class="float-md-right"><div class="textbox text-nowrap"><h3 class="m-3">Explore other genres</h3></div><img src="bild.PNG"/></span>
+                    <span class="float-md-right"><div class="textbox text-nowrap"><h3 class="m-3">Explore other genres</h3></div><img class="img-w-70" src="images/camille.jpg"/></span>
                 </div>
             </div>
         </div>
