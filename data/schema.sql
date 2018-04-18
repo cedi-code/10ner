@@ -6,7 +6,7 @@ CREATE TABLE Benutzer (
     ID_Ben integer primary key AUTO_INCREMENT,
     benutzername varchar(50),
     email varchar(50),
-    passwort varchar(50)
+    passwort varchar(255)
 );
 DROP TABLE IF EXISTS Kategorie;
 CREATE TABLE Kategorie (

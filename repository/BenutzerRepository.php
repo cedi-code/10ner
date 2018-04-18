@@ -31,7 +31,7 @@ class BenutzerRepository extends Repository
      */
     public function create($benutzername, $email, $passwort)
     {
-        $passwort = password_hash($passwort);
+        $passwort = password_hash($passwort, PASSWORD_DEFAULT);
 
         $query = "INSERT INTO $this->tableName (benutzername, email, passwort) VALUES (?, ?, ?)";
 
