@@ -24,6 +24,6 @@ class LoginController extends Repository
         $view->display();
     }
     public function checkLogin() {
-        
+
     }
 }

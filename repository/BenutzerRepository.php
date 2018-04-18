@@ -46,8 +46,9 @@ class BenutzerRepository extends Repository
     public function checkEmail($email) {
         $queryMail = "SELECT * FROM $this->tableName WHERE  email = ?";
         $statement = ConnectionHandler::getConnection()->prepare($queryMail);
-        $statement->bind_param('sss', $email);
+        $statement->bind_param('s', $email);
         $resultCheck = mysqli_num_rows($statement->execute());
+
         return $resultCheck;
 
 
