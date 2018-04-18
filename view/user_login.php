@@ -3,7 +3,7 @@
         <div class="content colorMainBlue">
             <h2 c>Login</h2>
             <?php
-            $form = new Form('/login/doCreate');
+            $form = new Form('/login/checkLogin');
 
             echo $form->text()->label('Email')->name('email');
             echo $form->text()->label('Passwort')->name('passwort');
@@ -13,7 +13,7 @@
             $form->end();
 
             ?>
-            <span class="float-md-right "><a href="/benutzer">Register now!</a></span>
+            <span class="float-md-right "><a href="/benutzer/index">Register now!</a></span>
         </div>
 
     </div>

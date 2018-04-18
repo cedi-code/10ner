@@ -9,17 +9,6 @@ class BenutzerController
 {
     public function index()
     {
-        $userRepository = new BenutzerRepository();
-
-        $view = new View('user_index');
-        $view->title = 'Benutzer';
-        $view->heading = 'Benutzer';
-        $view->benutzer = $userRepository->readAll();
-        $view->display();
-    }
-
-    public function create()
-    {
         $view = new View('user_create');
         $view->title = 'Benutzer erstellen';
         $view->heading = 'Benutzer erstellen';
@@ -28,7 +17,7 @@ class BenutzerController
 
     public function doCreate()
     {
-        if ($_POST['send']) {
+        if ($_POST['sendUser']) {
             $benutzername = $_POST['benutzername'];
             $email = $_POST['email'];
             // $password  = $_POST['password'];

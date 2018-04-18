@@ -51,6 +51,5 @@ class BenutzerRepository extends Repository
 
         return $resultCheck;
 
-
     }
 }
