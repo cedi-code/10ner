@@ -166,12 +166,17 @@ header {
   -webkit-appearance: none;
   -moz-appearance: none;
 
-
-
 }
+.range-value {
+  width: 50%;
+  text-align: center;
+  table-layout: fixed;
+}
+
 input[type=range] {
   width: 50%;
-  margin-top: 10%;
+  margin-top: 2%;
+
 }
 input[type=range]::-webkit-slider-runnable-track {
   -webkit-appearance: none;
@@ -232,4 +237,16 @@ input[type=range]::-moz-range-thumb {
   cursor: -moz-grab;
   -moz-transition: border 1000ms ease;
   transition: border 1000ms ease;
+}
+.animation-delay-05 {
+  -webkit-animation-delay: 0.5s;
+  animation-delay: 0.5s;
+}
+.animation-delay-075 {
+  -webkit-animation-delay: 0.75s;
+  animation-delay: 0.75s;
+}
+.animation-delay-1 {
+  -webkit-animation-delay: 1s;
+  animation-delay: 1s;
 }
