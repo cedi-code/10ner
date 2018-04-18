@@ -20,10 +20,15 @@ class BenutzerController
         if ($_POST['sendUser']) {
             $benutzername = $_POST['benutzername'];
             $email = $_POST['email'];
-            // $password  = $_POST['password'];
-            $passwort = 'no_password';
+            $password  = $_POST['password'];
 
             $userRepository = new BenutzerRepository();
+            if ($userRepository->checkEmail($email) == 1) {
+                echo "<script>alert('Email schon vergeben!');</script>";
+            }
+            else if($benutzername) {
+                echo "<script>alert('');</script>";
+            }
             $userRepository->create($benutzername, $email, $passwort);
         }
 
