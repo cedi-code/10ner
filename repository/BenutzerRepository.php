@@ -48,7 +48,13 @@ class BenutzerRepository extends Repository
         $queryMail = "SELECT * FROM $this->tableName WHERE  email = ?";
         $statement = ConnectionHandler::getConnection()->prepare($queryMail);
         $statement->bind_param('s', $email);
-        $resultCheck = mysqli_num_rows($statement->execute());
+
+        if (!$statement->execute()) {
+            throw new Exception($statement->error);
+        }
+        $result = $statement->get_result();
+
+        $resultCheck = $result->num_rows;
 
         return $resultCheck;
 
@@ -57,11 +63,16 @@ class BenutzerRepository extends Repository
         $queryMail = "SELECT * FROM $this->tableName WHERE  email = ?";
         $statement = ConnectionHandler::getConnection()->prepare($queryMail);
         $statement->bind_param('s', $email);
-        $result = $statement->execute();
+        if (!$statement->execute()) {
+            throw new Exception($statement->error);
+        }
+        $result = $statement->get_result();
 
-        $row = mysqli_fetch_row($result);
-        $hashedPwdCheck = password_verify($pw, $row['password']);
+
+        $row = $result->fetch_row();
+        $hashedPwdCheck = password_verify($pw, $row[3]);
         if($hashedPwdCheck === true) {
+            echo "ok";
             return $row;
         }else {
             return false;
