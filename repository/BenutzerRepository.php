@@ -52,7 +52,6 @@ class BenutzerRepository extends Repository
 
         return $resultCheck;
 
-
     }
     public function checkPW($pw,$email) {
         $queryMail = "SELECT * FROM $this->tableName WHERE  email = ?";

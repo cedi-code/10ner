@@ -13,7 +13,7 @@
             $form->end();
 
             ?>
-            <span class="float-md-right "><a href="/benutzer">Register now!</a></span>
+            <span class="float-md-right "><a href="/benutzer/index">Register now!</a></span>
         </div>
 
     </div>
