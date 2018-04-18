@@ -3,7 +3,7 @@
         <div class="content colorMainBlue">
             <h2 c>Login</h2>
             <?php
-            $form = new Form('/login/doCreate');
+            $form = new Form('/login/checkLogin');
 
             echo $form->text()->label('Email')->name('email');
             echo $form->text()->label('Passwort')->name('passwort');
