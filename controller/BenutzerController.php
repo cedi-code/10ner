@@ -18,22 +18,15 @@ class BenutzerController
 
     public function doCreate()
     {
-
-<<<<<<< HEAD
         $errors = [];
-=======
->>>>>>> e4e4c3ac3f34f50a68d448dda7667febdfc8adce
         if ($_POST['sendUser']) {
 
             $benutzername = $_POST['benutzername'];
             $email = $_POST['email'];
-<<<<<<< HEAD
             $passwort = $_POST['passwort'];
-=======
             $password  = $_POST['passwort'];
->>>>>>> e4e4c3ac3f34f50a68d448dda7667febdfc8adce
+
             $userRepository = new BenutzerRepository();
-            $regexEmail = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$";
 
             if(
                 empty($benutzername) || 
@@ -44,7 +37,7 @@ class BenutzerController
             } else if ($userRepository->checkEmail($email) > 0) {
                 $errors['email_exists'] = 'Diese Email existiert bereits.';
             }
-            else if (!preg_match($regexEmail, $email)) {
+            else if (!preg_match($email, "*")) {
                 $errors['email_regex'] = 'Ungültige Email-Adresse';
             }
             else if (strlen($benutzername) < 3) {
@@ -53,14 +46,9 @@ class BenutzerController
             else if (strlen($passwort) < 3) {
                 $errors['pw_lenght'] = 'Passwort brauch mindestens 3 Zeichen';
             }
-             else {
+            else {
                 $userRepository->create($benutzername, $email, $passwort);
             }
-<<<<<<< HEAD
-=======
-            $userRepository->create($benutzername, $email, $password);
-
->>>>>>> e4e4c3ac3f34f50a68d448dda7667febdfc8adce
         }
 
         // Anfrage an die URI /user weiterleiten (HTTP 302)
