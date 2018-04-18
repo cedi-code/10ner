@@ -28,13 +28,13 @@ class LoginController extends Repository
         $repo = new BenutzerRepository();
         if(isset($_POST['send'])) {
             if($repo->checkEmail($_POST['email']) == 1) {
-                $rows = $repo->checkPW($_POST['passwort'],$_POST['email'])
+                $rows = $repo->checkPW($_POST['passwort'],$_POST['email']);
                 if($rows !== false) {
                     @session_start();
                     $_SESSION['uid'] = $rows['ID_Ben'];
                     $_SESSION['benutzername'] =  $rows['benutzername'];
                 }else {
-                    
+
                 }
             }else {
 
