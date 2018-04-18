@@ -15,6 +15,7 @@ class BenutzerRepository extends Repository
      */
     protected $tableName = 'Benutzer';
 
+
     /**
      * Erstellt einen neuen benutzer mit den gegebenen Werten.
      *
@@ -51,5 +52,19 @@ class BenutzerRepository extends Repository
 
         return $resultCheck;
 
+    }
+    public function checkPW($pw,$email) {
+        $queryMail = "SELECT * FROM $this->tableName WHERE  email = ?";
+        $statement = ConnectionHandler::getConnection()->prepare($queryMail);
+        $statement->bind_param('s', $email);
+        $result = $statement->execute();
+
+        $row = mysqli_fetch_row($result);
+        $hashedPwdCheck = password_verify($pw, $row['password']);
+        if($hashedPwdCheck === true) {
+            return $row;
+        }else {
+            return false;
+        }
     }
 }
