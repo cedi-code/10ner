@@ -28,7 +28,7 @@ class BenutzerController
         }
 
         // Anfrage an die URI /user weiterleiten (HTTP 302)
-        header('Location: /benutzer');
+        header('Location: /login');
     }
 
     public function delete()
