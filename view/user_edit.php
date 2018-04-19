@@ -23,7 +23,9 @@
 
                     </div>
                 </label>
-                <input id="uploadImage" type="file"/>
+                <form action="">
+                    <input id="uploadImage" type="file"/>
+                </form>
             </div>
 
         </div>

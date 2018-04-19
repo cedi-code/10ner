@@ -2,6 +2,7 @@
     <div class="introBox">
         <div class="content">
             <?php
+
                 echo "<img src=\"$bildPfad\"/>";
             ?>
 
