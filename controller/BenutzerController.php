@@ -24,7 +24,6 @@ class BenutzerController
             $benutzername = $_POST['benutzername'];
             $email = $_POST['email'];
             $passwort = $_POST['passwort'];
-            $password  = $_POST['passwort'];
 
             $userRepository = new BenutzerRepository();
 
@@ -37,9 +36,9 @@ class BenutzerController
             } else if ($userRepository->checkEmail($email) > 0) {
                 $errors['email_exists'] = 'Diese Email existiert bereits.';
             }
-            else if (!preg_match($email, "*")) {
-                $errors['email_regex'] = 'Ungültige Email-Adresse';
-            }
+            //else if (!preg_match('[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}', $email)) //{
+            //    $errors['email_regex'] = 'Ungültige Email-Adresse';
+            //}
             else if (strlen($benutzername) < 3) {
                 $errors['name_lenght'] = 'Name brauch mindestens 3 Zeichen';
             }

@@ -6,8 +6,8 @@
 			$form = new Form('/benutzer/doCreate');
 
 			echo $form->text()->label('Benutzername')->name('benutzername');
-			echo $form->text()->label('Email')->name('email');
-			echo $form->password()->label('Passwort')->name('passwort');
+			echo $form->email()->label('Email')->name('email');
+			echo $form->passwort()->label('Passwort')->name('passwort');
 
 			foreach($this->errors as $error) {
 				echo '<div class="alert alert-danger">'
