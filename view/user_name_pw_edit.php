@@ -1,31 +1,24 @@
 <section class="intro" >
     <div class="introBox">
-        <div class="content profil-content">
-            <?php
-                echo "<div style='margin-bottom: 5%'>";
-                echo "<div class=\"imgbox-hover hover-box\">";
-                echo "<img src=\"/images/camille.jpg\"/>";
-                echo "<div class=\"centered\" onclick=\"location.href='profil/edit';\"><h3>Change Profile</h3></div>";
-                echo "</div>";
-                echo "<h2>" . $_SESSION['benutzername'] . "</h2>";
-                echo "</div>";
-                echo "<h3>Bilder von ". $_SESSION['benutzername'] . "</h3>";
-            ?>
-            <div class="profil-image-table">
-                <div class="card imgbox-hover">
-                    <img src="/images/cute_pomeranian_dog.jpg"/>
-                    <div class="centered lead"><span class="glyphicon glyphicon-trash"></span></div>
-                    <p>Rating : 10</p>
-                </div>
-                <label for="uploadImage">
-                    <div  class="card homeBackground";>
-                        <div class="center-plus">&#43;</div>
+        <div class="content colorMainBlue">
+        <h2>Benutzer bearbeiten</h2>
+        <?php
+            $form = new Form('/benutzer/doCreate', 'POST',  'multipart/form-data');
 
-                    </div>
-                </label>
-                <input id="uploadImage" type="file"/>
-            </div>
+            echo $form->text()->label('Benutzername')->name('benutzername');
+            echo $form->email()->label('Email')->name('email');
+            echo $form->passwort()->label('Passwort')->name('passwort');
+            echo $form->file()->label('Profilbild')->name('profilbild');
+            
+            foreach($this->errors as $error) {
+                echo '<div class="alert alert-danger">'
+                 . $error .
+            '</div>';
+            }
+            echo $form->submit()->label('Benutzer erstellen')->name('sendUser');
 
+            $form->end();
+        ?>
         </div>
     </div>
 </section>

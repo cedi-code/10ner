@@ -2,9 +2,15 @@
     <div class="introBox">
         <div class="content profil-content">
             <?php
+                require_once '../repository/BildRepository.php';
+                $imageRepo = new BildRepository();
+
+
                 echo "<div style='margin-bottom: 5%'>";
                 echo "<div class=\"imgbox-hover hover-box\">";
-                echo "<img src=\"/images/camille.jpg\"/>";
+                $profilBild = $imageRepo->getProfilBild($_SESSION['uid']);
+
+                echo '<img src='."/".$profilBild.'>';
                 echo "<div class=\"centered\" onclick=\"location.href='profil/edit';\"><h3>Change Profile</h3></div>";
                 echo "</div>";
                 echo "<h2>" . $_SESSION['benutzername'] . "</h2>";
@@ -23,7 +29,8 @@
 
                     </div>
                 </label>
-                <input id="uploadImage" type="file"/>
+
+                <input type="file" id="uploadImage" onselect=""/>
             </div>
 
         </div>

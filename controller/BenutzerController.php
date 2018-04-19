@@ -86,4 +86,9 @@ class BenutzerController
         // Anfrage an die URI /user weiterleiten (HTTP 302)
         header('Location: /benutzer');
     }
+
+    public function doUpdate()
+    {
+        
+    }
 }
