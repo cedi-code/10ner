@@ -28,7 +28,7 @@ class LoginController extends Repository
         $repo = new BenutzerRepository();
 
         if(isset($_POST['send'])) {
-            if(empty($_POST['email']) || empty($_POST['passwort'])) {
+            if(!empty($_POST['email']) || !empty($_POST['passwort'])) {
                 if($repo->checkEmail($_POST['email']) == 1) {
                     $rows = $repo->checkPW($_POST['passwort'],$_POST['email']);
                     if($rows !== false) {

@@ -119,6 +119,72 @@ header {
 
 
 }
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.profil-content {
+  padding-bottom:0%;
+  color: black;
+}
+.profil-content h2 {
+  text-align: center;
+}
+
+.imgbox-hover {
+  text-align: center;
+  display:block;
+  margin:auto;
+
+  position: relative;
+
+}
+.hover-box {
+  max-width: 30%;
+  border: solid 2px #0054FF;
+}
+.imgbox-hover img {
+  max-width: 100%;
+  transition: all 0.5s ease;
+}
+.imgbox-hover .centered {
+  opacity: 0;
+  transition: all 0.5s ease;
+}
+.imgbox-hover:hover img {
+  filter: blur(2px);
+}
+.imgbox-hover:hover .centered {
+  opacity: 1;
+}
+.profil-image-table {
+  display: grid;
+  grid-column-gap: 50px;
+  grid-template-columns:  repeat(3, 1fr);
+  grid-template-rows: repeat(auto-fill,auto) ;
+}
+.profil-image-table .card {
+  border-radius: 10px;
+  text-align: center;
+  height: 200px;
+  width: 100%;
+  margin: auto 0;
+}
+.profil-image-table .card img {
+  max-width: 100%;
+  max-height: 90%;
+  border-radius: 10px;
+}
+.center-plus {
+  text-align: center;
+  vertical-align: middle;
+  line-height: 200px;
+  font-size: 300%;
+  color: white;
+}
 
 .navbar-brand,
 .navbar-nav li a {
@@ -151,10 +217,15 @@ header {
   background-color: #100CE8;
   transform: scale(1.1);
 }
+
+
 @media screen and (max-width: 900px) {
   .content {
     max-width: 50%;
     padding-bottom: 50%;
+  }
+  .profil-content {
+    padding-bottom:20%;
   }
   .content h1 {
     font-size: 400%;
@@ -172,6 +243,7 @@ header {
   text-align: center;
   table-layout: fixed;
 }
+
 
 input[type=range] {
   width: 50%;
