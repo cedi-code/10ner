@@ -2,7 +2,7 @@
     <div class="introBox">
         <div class="content">
             <?php
-
+                echo $bildPfad;
                 echo "<img src=\"$bildPfad\"/>";
             ?>
 
