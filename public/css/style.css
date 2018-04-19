@@ -82,6 +82,25 @@ header {
 
 
 }
+.contentRate {
+  max-width: 250px;
+  margin: 0 auto;
+  padding-bottom:0%;
+  background-color: white;
+  border-radius: 10px;
+
+}
+.rateImage {
+  max-width: 100%;
+  background-size: cover;
+  width: 250px;
+  height: 350px;
+  border: 2px solid;
+  color: pink;
+  resize: both;
+  background-position: center;
+  border-radius: 10px  10px 0 0;
+}
 .content .imgbox {
   margin-right: 5%;
   max-width: 40%;
@@ -257,8 +276,14 @@ header {
   text-align: center;
   table-layout: fixed;
 }
-
-
+.contentRate .range-value {
+  width: 100%;
+  color: black;
+}
+.contentRate input[type=range] {
+  width: 100% ;
+  margin-top: 2%;
+}
 input[type=range] {
   width: 50%;
   margin-top: 2%;
