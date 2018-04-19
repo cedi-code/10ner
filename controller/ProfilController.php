@@ -18,7 +18,8 @@ class ProfilController
         @session_start();
         if(isset($_SESSION['uid'])) {
             if(isset($_POST['upload'])) {
-
+                // TODO bild hochladen? und aktuallisieren...
+                // $_POST['uploadImage'];
             }
             $view = new View('user_edit');
             $view->title =  $_SESSION['benutzername'];
