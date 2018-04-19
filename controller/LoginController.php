@@ -18,6 +18,7 @@ class LoginController extends Repository
                         @session_start();
                         $_SESSION['uid'] = $rows->ID_Ben;
                         $_SESSION['benutzername'] =  $rows->benutzername;
+                        $_SESSION['email'] = $rows->email;
                         
                         header("Location: /profil/index");
                     }else {

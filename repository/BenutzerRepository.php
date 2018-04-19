@@ -81,4 +81,17 @@ class BenutzerRepository extends Repository
             return false;
         }
     }
+    public function getProfilBild($uid)
+    {
+        $query = 'select * from benutzer WHERE ID_Ben = ?';
+        $statement = ConnectionHandler::getConnection()->prepare($query);
+        $statement->bind_param('s', $uid);
+        if (!$statement->execute()) {
+            throw new Exception($statement->error);
+        }
+        $result = $statement->get_result();
+        $user = $result->fetch_object();
+
+        return $user->profilbild;
+    }
 }
