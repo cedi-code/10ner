@@ -101,6 +101,9 @@ header {
   max-width: 70%;
   max-height: 70%;
 }
+#submitUpload {
+  display: none;
+}
 .content .textbox {
   margin: 0;
   padding-left: 10px;

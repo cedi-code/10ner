@@ -10,3 +10,17 @@ $(document).on('input change', '#range', function() {
     $( "#range" + rate ).css({visibility: "visible",animation: 'bounce 0.5s'});
 
 });
+$(function() {
+    $("input:file").change(function (){
+            if(this.id=="uploadImage"){
+                var fileName = $(this).val();
+                $(".filename").html(fileName);
+                console.log("ok");
+                $("#submitUpload").trigger('click');
+            }
+
+            // $('#submit_100').trigger('click');
+
+
+    });
+});
