@@ -81,4 +81,15 @@ class BenutzerRepository extends Repository
             return false;
         }
     }
+    public function getRandomId() {
+        $query = "SELECT ID_Bew FROM {$this->tableName} ORDER BY RAND() LIMIT 1";
+        $statement = ConnectionHandler::getConnection()->prepare($query);
+        if (!$statement->execute()) {
+            throw new Exception($statement->error);
+        }
+        $result = $statement->get_result();
+        $row = $result->fetch_object();
+        return $row;
+
+    }
 }
