@@ -5,7 +5,7 @@
                 echo "<div style='margin-bottom: 5%'>";
                 echo "<div class=\"imgbox-hover hover-box\">";
                 echo "<img src=\"/images/camille.jpg\"/>";
-                echo "<div class=\"centered\" onclick=\"location.href='profil/edit';\"><h3>Change Profile</h3></div>";
+                echo "<a href='/profil/update'><div class=\"centered\"><h3>Change Profile</h3></div>";
                 echo "</div>";
                 echo "<h2>" . $_SESSION['benutzername'] . "</h2>";
                 echo "</div>";
