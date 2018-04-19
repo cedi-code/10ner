@@ -1,7 +1,9 @@
 <section class="intro" >
     <div class="introBox">
         <div class="content">
-            <h2>Test</h2>
+            <?php
+                echo "<img src=\"$bildPfad\"/>";
+            ?>
 
         </div>
     </div>
