@@ -29,15 +29,51 @@ class ProfilController
                     session_destroy();
             header("Location: /");
         }
-
-        $bild = $userRepository->getProfilBild($_SESSION['uid']);
-        var_dump($bild);
-
     }
     public function logout() {
         session_start();
         session_destroy();
         header("Location: /login");
     }
-    
+
+    public function update()
+    {
+        $errors = [];
+        if ($_POST['updateUser']) {
+
+            $benutzername = $_POST['benutzername'];
+            $passwort = $_POST['passwort'];
+
+            $userRepository = new BenutzerRepository();
+            $imageRepository = new BildRepository();
+
+            if (strlen($benutzername) < 3) {
+                $errors['name_lenght'] = 'Name brauch mindestens 3 Zeichen';
+            }
+            else if (strlen($passwort) < 3) {
+                $errors['pw_lenght'] = 'Passwort brauch mindestens 3 Zeichen';
+            }
+            else {
+                //Bild im Ordner /images/ abspeichern
+                $file = $this->uploadImage($_FILES['profilbild'], $_SESSION['email']);
+                //Benutzer in der Datenbank updaten (in der tabelle benutzer)
+                $uid = $userRepository->update($benutzername, $passwort, $file);
+                //Bild in der Datenbank updaten (in der tabelle bild)
+                $imageRepository->update($uid, $file);
+            }
+        }
+
+        // Anfrage an die URI /user weiterleiten (HTTP 302)
+        //if (empty($errors)) {
+        //    header('Location: /profil');
+        //    exit;
+        //}
+
+        $view = new View('user_name_pw_edit');
+        $view->title = 'Benutzer bearbeiten';
+        $view->heading = 'Benutzer bearbeiten';
+        $view->errors = $errors;
+        $view->display();
+
+    }
 }

@@ -34,7 +34,7 @@ class BildRepository extends Repository
         $query = "INSERT INTO {$this->tableName} (pfad, istProfilBild, inhaber_id, kategorie_id) VALUES (?, ?, ?, ?)";
 
         $statement = ConnectionHandler::getConnection()->prepare($query);
-        $statement->bind_param('ssss', $pfad, $istProfilBild, $inhaber_id, $kategorie_id);
+        $statement->bind_param('siii', $pfad, $istProfilBild, $inhaber_id, $kategorie_id);
 
         if (!$statement->execute()) {
             throw new Exception($statement->error);
@@ -70,5 +70,22 @@ class BildRepository extends Repository
         $user = $result->fetch_object();
 
         return $user->pfad;
+    }
+
+    public function update($uid, $file)
+    {
+        $query = "
+            UPDATE bild
+            SET pfad = ?
+            WHERE inhaber_id = ?
+            and istProfilBild = true;";
+        $statement = ConnectionHandler::getConnection()->prepare($query);
+        $statement->bind_param('ss',$uid , $file);
+        if (!$statement->execute()) {
+            throw new Exception($statement->error);
+        }
+        $result = $statement->get_result();
+        $Bilder = $result->fetch_object();
+        return $Bilder->pfad; 
     }
 }

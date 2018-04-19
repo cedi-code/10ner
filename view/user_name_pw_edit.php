@@ -3,19 +3,18 @@
         <div class="content colorMainBlue">
         <h2>Benutzer bearbeiten</h2>
         <?php
-            $form = new Form('/benutzer/doCreate', 'POST',  'multipart/form-data');
+            $form = new Form('/profil/update', 'POST',  'multipart/form-data');
 
-            echo $form->text()->label('Benutzername')->name('benutzername');
-            echo $form->email()->label('Email')->name('email');
-            echo $form->passwort()->label('Passwort')->name('passwort');
-            echo $form->file()->label('Profilbild')->name('profilbild');
+            echo $form->text()->label('neuer Benutzername')->name('benutzername');
+            echo $form->passwort()->label('neues Passwort')->name('passwort');
+            echo $form->file()->label('neues Profilbild')->name('profilbild');
             
             foreach($this->errors as $error) {
                 echo '<div class="alert alert-danger">'
                  . $error .
             '</div>';
             }
-            echo $form->submit()->label('Benutzer erstellen')->name('sendUser');
+            echo $form->submit()->label('bestätigen')->name('updateUser');
 
             $form->end();
         ?>
