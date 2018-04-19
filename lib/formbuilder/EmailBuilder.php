@@ -7,7 +7,7 @@
  */
 
 
-class PasswortBuilder extends Builder
+class EmailBuilder extends Builder
 {
     public function __construct()
     {
