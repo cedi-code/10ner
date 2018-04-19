@@ -5,26 +5,9 @@ require_once '../repository/BenutzerRepository.php';
 
 class LoginController extends Repository
 {
-
-    public function readByEmail($email)
-    {
-
-    }
+    private $errors = [];
     public function index() {
-        $view = new View('user_login');
-        $view->title = 'Login';
-        $view->heading = 'Login';
-        $view->display();
-    }
-
-    public function login()
-    {
-        $view = new View('user_login');
-        $view->title = 'Login';
-        $view->heading = 'Login';
-        $view->display();
-    }
-    public function checkLogin() {
+        $errors = [];
         $repo = new BenutzerRepository();
 
         if(isset($_POST['send'])) {
@@ -35,21 +18,25 @@ class LoginController extends Repository
                         @session_start();
                         $_SESSION['uid'] = $rows->ID_Ben;
                         $_SESSION['benutzername'] =  $rows->benutzername;
-                        echo "WAs?";
+                        
                         header("Location: /profil/index");
                     }else {
-                        echo "Passwort Fail!";
+                        $errors['pw_fail'] = "Falsches Passwort";
                     }
                 }else {
-                    echo "Email Fail!";
+                    $errors['email_fail'] = "Ungültige Email";
                 }
             }else {
-                echo "Felder sind leer";
+                $errors['fill_fail'] = "Bitte alle Felder ausfüllen!";
             }
-
-
         }else {
-            header("Location: /login");
+            // header("Location: /login");
+            
         }
+            $view = new View('user_login');
+            $view->title = 'Login';
+            $view->heading = 'Login';
+            $view->errors = $errors;
+            $view->display();
     }
 }

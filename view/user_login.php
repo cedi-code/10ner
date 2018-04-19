@@ -3,11 +3,17 @@
         <div class="content colorMainBlue">
             <h2 c>Login</h2>
             <?php
-            $form = new Form('/login/checkLogin');
+            $form = new Form('/login');
 
-            echo $form->text()->label('Email')->name('email');
-            echo $form->text()->label('Passwort')->name('passwort');
-            // echo $form->password()->label('Passwor2d')->name('password2');
+            echo $form->email()->label('Email')->name('email');
+            echo $form->passwort()->label('Passwort')->name('passwort');
+            
+            foreach($this->errors as $error) {
+                echo '<div class="alert alert-danger">'
+                 . $error .
+            '</div>';
+            }
+
             echo $form->submit()->label('Login')->name('send');
 
             $form->end();

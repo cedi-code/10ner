@@ -9,7 +9,7 @@
 			echo $form->email()->label('Email')->name('email');
 			echo $form->passwort()->label('Passwort')->name('passwort');
 			echo $form->file()->label('Profilbild')->name('profilbild');
-
+			
 			foreach($this->errors as $error) {
 				echo '<div class="alert alert-danger">'
  				 . $error .
