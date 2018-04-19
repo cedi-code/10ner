@@ -23,9 +23,9 @@
 
                     </div>
                 </label>
-                <form action="/default" method="post">
+                <form action="/profil" method="post">
                     <input id="uploadImage" type="file" onselect="triggerSubmit('#submitUpload')"/>
-                    <input type="submit" id="submitUpload"/>
+                    <input type="submit" id="submitUpload" name="upload"/>
                 </form>
             </div>
 
