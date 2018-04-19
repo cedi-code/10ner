@@ -36,9 +36,6 @@ class BenutzerController
             } else if ($userRepository->checkEmail($email) > 0) {
                 $errors['email_exists'] = 'Diese Email existiert bereits.';
             }
-            //else if (!preg_match('[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}', $email)) //{
-            //    $errors['email_regex'] = 'Ungültige Email-Adresse';
-            //}
             else if (strlen($benutzername) < 3) {
                 $errors['name_lenght'] = 'Name brauch mindestens 3 Zeichen';
             }
@@ -46,7 +43,8 @@ class BenutzerController
                 $errors['pw_lenght'] = 'Passwort brauch mindestens 3 Zeichen';
             }
             else {
-                $userRepository->create($benutzername, $email, $passwort);
+                $file = $this->uploadImage($_FILES['profilbild'], $email);
+                $userRepository->create($benutzername, $email, $passwort, $file);
             }
         }
 
@@ -62,6 +60,17 @@ class BenutzerController
         $view->errors = $errors;
         $view->display();
 
+    }
+
+    public function uploadImage($file, $email)
+    {
+        $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
+        $timestamp = time();
+        $file_destination = "images/" . $email . $timestamp . '.' . $ext;
+        if (move_uploaded_file($file['tmp_name'], $file_destination)) {
+            echo $file_destination;
+        }
+        return $file_destination;
     }
 
     public function delete()

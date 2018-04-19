@@ -2,9 +2,14 @@
 
 class Form
 {
-    public function __construct($action = '#', $method = 'POST')
+    public function __construct($action = '#', $method = 'POST', $enctype = null)
     {
-        echo "<form class=\"form-horizontal\" action=\"$action\" method=\"$method\">";
+        if (is_null($enctype)) {
+            echo "<form class=\"form-horizontal\" action=\"$action\" method=\"$method\" >";
+        }
+        else {
+            echo "<form class=\"form-horizontal\" action=\"$action\" method=\"$method\" enctype=\"$enctype\">";
+        }
         echo '  <div class="component" data-html="true">';
     }
 

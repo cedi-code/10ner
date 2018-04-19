@@ -13,7 +13,7 @@ class BenutzerRepository extends Repository
      * Diese Variable wird von der Klasse Repository verwendet, um generische
      * Funktionen zur Verfügung zu stellen.
      */
-    protected $tableName = 'Benutzer';
+    protected $tableName = 'benutzer';
 
 
     /**
@@ -29,14 +29,14 @@ class BenutzerRepository extends Repository
      *
      * @throws Exception falls das Ausführen des Statements fehlschlägt
      */
-    public function create($benutzername, $email, $passwort)
+    public function create($benutzername, $email, $passwort, $fileName)
     {
         $passwort = password_hash($passwort, PASSWORD_DEFAULT);
 
-        $query = "INSERT INTO $this->tableName (benutzername, email, passwort) VALUES (?, ?, ?)";
+        $query = "INSERT INTO {$this->tableName} (benutzername, email, passwort, profilbild) VALUES (?, ?, ?, ?)";
 
         $statement = ConnectionHandler::getConnection()->prepare($query);
-        $statement->bind_param('sss', $benutzername, $email, $passwort);
+        $statement->bind_param('ssss', $benutzername, $email, $passwort, $fileName);
 
         if (!$statement->execute()) {
             throw new Exception($statement->error);
