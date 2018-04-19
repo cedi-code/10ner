@@ -7,13 +7,13 @@ require_once '../lib/Repository.php';
  *
  * Die Ausführliche Dokumentation zu Repositories findest du in der Repository Klasse.
  */
-class BenutzerRepository extends Repository
+class BildRepository extends Repository
 {
     /**
      * Diese Variable wird von der Klasse Repository verwendet, um generische
      * Funktionen zur Verfügung zu stellen.
      */
-    protected $tableName = 'benutzer';
+    protected $tableName = 'Bild';
 
 
     /**
@@ -29,56 +29,46 @@ class BenutzerRepository extends Repository
      *
      * @throws Exception falls das Ausführen des Statements fehlschlägt
      */
-    public function create($benutzername, $email, $passwort)
+    public function create($pfad, $istProfilBild, $inhaber_id, $kategorie_id) //funktioniert!
     {
-        $passwort = password_hash($passwort, PASSWORD_DEFAULT);
-
-        $query = "INSERT INTO {$this->tableName} (benutzername, email, passwort) VALUES (?, ?, ?)";
+        $query = "INSERT INTO {$this->tableName} (pfad, istProfilBild, inhaber_id, kategorie_id) VALUES (?, ?, ?, ?)";
 
         $statement = ConnectionHandler::getConnection()->prepare($query);
-        $statement->bind_param('sss', $benutzername, $email, $passwort);
+        $statement->bind_param('ssss', $pfad, $istProfilBild, $inhaber_id, $kategorie_id);
 
         if (!$statement->execute()) {
             throw new Exception($statement->error);
         }
-
-        return $statement->insert_id;
     }
-    public function checkEmail($email) {
-        $queryMail = "SELECT * FROM $this->tableName WHERE  email = ?";
-        $statement = ConnectionHandler::getConnection()->prepare($queryMail);
-        $statement->bind_param('s', $email);
 
+    public function getEveryImage($uid) //fertig
+    {
+        $query = "select * from bild as bi join benutzer as be
+                on bi.inhaber_id = be.ID_Ben where be.ID_Ben = ?;";
+        $statement = ConnectionHandler::getConnection()->prepare($query);
+        $statement->bind_param('s', $uid);
         if (!$statement->execute()) {
             throw new Exception($statement->error);
         }
         $result = $statement->get_result();
-
-        $resultCheck = $result->num_rows;
-
-        return $resultCheck;
-
+        $Bilder = $result->fetch_object();
+        return $Bilder->pfad; 
     }
-    public function checkPW($pw,$email) {
-        $queryMail = "SELECT * FROM $this->tableName WHERE  email = ?";
-        $statement = ConnectionHandler::getConnection()->prepare($queryMail);
-        $statement->bind_param('s', $email);
+
+    public function getProfilBild($uid) //fertig
+    {
+        $query = 'select * from bild as bi join benutzer as be
+                on bi.inhaber_id = be.ID_Ben
+                where be.ID_Ben = ?
+                and bi.istProfilBild = true;';
+        $statement = ConnectionHandler::getConnection()->prepare($query);
+        $statement->bind_param('s', $uid);
         if (!$statement->execute()) {
             throw new Exception($statement->error);
         }
         $result = $statement->get_result();
+        $user = $result->fetch_object();
 
-
-        $row = $result->fetch_object();
-
-        $hashedPwdCheck = password_verify($pw, $row->passwort);
-
-
-        if($hashedPwdCheck === true) {
-            return $row;
-
-        }else {
-            return false;
-        }
+        return $user->pfad;
     }
 }

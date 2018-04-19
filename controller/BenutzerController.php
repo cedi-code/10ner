@@ -1,7 +1,7 @@
 <?php
 
 require_once '../repository/BenutzerRepository.php';
-
+require_once '../repository/BildRepository.php';
 /**
  * Siehe Dokumentation im DefaultController.
  */
@@ -26,6 +26,7 @@ class BenutzerController
             $passwort = $_POST['passwort'];
 
             $userRepository = new BenutzerRepository();
+            $imageRepository = new BildRepository();
 
             if(
                 empty($benutzername) || 
@@ -43,8 +44,12 @@ class BenutzerController
                 $errors['pw_lenght'] = 'Passwort brauch mindestens 3 Zeichen';
             }
             else {
+                //Bild im Ordner /images/ abspeichern
                 $file = $this->uploadImage($_FILES['profilbild'], $email);
-                $userRepository->create($benutzername, $email, $passwort, $file);
+                //Benutzer in der Datenbank erfassen (in der tabelle benutzer)
+                $uid = $userRepository->create($benutzername, $email, $passwort);
+                //Bild in der Datenbank erfassen (in der tabelle bild)
+                $imageRepository->create($file, true, $uid, null);
             }
         }
 

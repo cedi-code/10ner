@@ -35,4 +35,5 @@ class ProfilController
         session_destroy();
         header("Location: /login");
     }
+    
 }
