@@ -25,10 +25,10 @@
         <div style="color:#000;" class="indexContentOr ">
             <div class="row">
                 <div class="col-md-6 text-center">
-                    <span class="float-md-left "><div class="textbox text-nowrap"><h3 class="m-3">Rate people by there Looks!</h3></div><img class="img-w-70" src="images/otherBild.jpg"/></span>
+                    <span class="float-md-left "><div class="textbox text-nowrap"><h3 class="m-3">Rate people by there Looks!</h3></div><div class="imgbox-hover hover-box max-w-70"><img  src="images/otherBild.jpg"/></div></span>
                 </div>
                 <div class="col-md-6 text-center">
-                    <span class="float-md-right "><div class="textbox text-nowrap"><h3 class="m-3">Explore other genres</h3></div><img class="img-w-70" src="images/cute_pomeranian_dog.jpg"/></span>
+                    <span class="float-md-right "><div class="textbox text-nowrap"><h3 class="m-3">Explore other genres</h3></div><div class="imgbox-hover hover-box max-w-70"><img class="img-w-70" src="images/cute_pomeranian_dog.jpg"/></div></span>
                 </div>
             </div>
         </div>

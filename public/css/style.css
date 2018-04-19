@@ -142,6 +142,9 @@ header {
   position: relative;
 
 }
+.max-w-70 {
+  max-width: 70% !important;
+}
 .hover-box {
   max-width: 30%;
   border: solid 2px #0054FF;
@@ -151,6 +154,7 @@ header {
   transition: all 0.5s ease;
 }
 .imgbox-hover .centered {
+  cursor: pointer;
   opacity: 0;
   transition: all 0.5s ease;
 }
@@ -172,6 +176,10 @@ header {
   height: 200px;
   width: 100%;
   margin: auto 0;
+  cursor: pointer;
+}
+.profil-image-table input[type="file"] {
+  display: none;
 }
 .profil-image-table .card img {
   max-width: 100%;
@@ -184,6 +192,7 @@ header {
   line-height: 200px;
   font-size: 300%;
   color: white;
+  cursor: pointer;
 }
 
 .navbar-brand,

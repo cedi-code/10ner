@@ -18,4 +18,5 @@ class RateController
         $view->heading = 'Rate';
         $view->display();
     }
+
 }

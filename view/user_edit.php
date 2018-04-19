@@ -5,7 +5,7 @@
                 echo "<div style='margin-bottom: 5%'>";
                 echo "<div class=\"imgbox-hover hover-box\">";
                 echo "<img src=\"/images/camille.jpg\"/>";
-                echo "<div class=\"centered\"><h3>Change Profile</h3></div>";
+                echo "<div class=\"centered\" onclick=\"location.href='profil/edit';\"><h3>Change Profile</h3></div>";
                 echo "</div>";
                 echo "<h2>" . $_SESSION['benutzername'] . "</h2>";
                 echo "</div>";
@@ -17,10 +17,13 @@
                     <div class="centered lead"><span class="glyphicon glyphicon-trash"></span></div>
                     <p>Rating : 10</p>
                 </div>
+                <label for="uploadImage">
+                    <div  class="card homeBackground";>
+                        <div class="center-plus">&#43;</div>
 
-                <div class="card homeBackground" onclick="location.href='/default'";>
-                    <div class="center-plus">&#43;<br/></div>
-                </div>
+                    </div>
+                </label>
+                <input id="uploadImage" type="file"/>
             </div>
 
         </div>
