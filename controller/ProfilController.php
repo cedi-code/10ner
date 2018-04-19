@@ -17,6 +17,9 @@ class ProfilController
         //   View Klasse beschrieben.
         @session_start();
         if(isset($_SESSION['uid'])) {
+            if(isset($_POST['upload'])) {
+
+            }
             $view = new View('user_edit');
             $view->title =  $_SESSION['benutzername'];
             $view->heading = $_SESSION['benutzername'];

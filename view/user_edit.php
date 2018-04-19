@@ -23,8 +23,9 @@
 
                     </div>
                 </label>
-                <form action="">
+                <form action="/profil" method="post">
                     <input id="uploadImage" type="file"/>
+                    <input type="submit" id="submitUpload"/>
                 </form>
             </div>
 
