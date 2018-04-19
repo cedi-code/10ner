@@ -26,19 +26,27 @@ class LoginController extends Repository
     }
     public function checkLogin() {
         $repo = new BenutzerRepository();
+
         if(isset($_POST['send'])) {
-            if($repo->checkEmail($_POST['email']) == 1) {
-                $rows = $repo->checkPW($_POST['passwort'],$_POST['email']);
-                if($rows !== false) {
-                    $_SESSION['uid'] = $rows->ID_Ben;
-                    $_SESSION['benutzername'] =  $rows->benutzername;
-                    echo "Success!";
+            if(empty($_POST['email']) || empty($_POST['passwort'])) {
+                if($repo->checkEmail($_POST['email']) == 1) {
+                    $rows = $repo->checkPW($_POST['passwort'],$_POST['email']);
+                    if($rows !== false) {
+                        @session_start();
+                        $_SESSION['uid'] = $rows->ID_Ben;
+                        $_SESSION['benutzername'] =  $rows->benutzername;
+                        echo "WAs?";
+                        header("Location: /profil/index");
+                    }else {
+                        echo "Passwort Fail!";
+                    }
                 }else {
-                    echo "Passwort Fail!";
+                    echo "Email Fail!";
                 }
             }else {
-                echo "Email Fail!";
+                echo "Felder sind leer";
             }
+
 
         }else {
             header("Location: /login");
