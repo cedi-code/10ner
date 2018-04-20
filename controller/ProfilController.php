@@ -81,4 +81,12 @@ class ProfilController
         $view->display();
 
     }
+
+    public function deleteImage()
+    {
+        $imageRepository = new BildRepository();
+        $imageRepository->deleteImage($_GET['bild_id']);
+
+        header('Location: /profil');
+    }
 }

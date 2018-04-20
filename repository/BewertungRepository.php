@@ -33,9 +33,8 @@ class BewertungRepository extends Repository
                 throw new Exception($statement->error);
             }
             $result = $statement->get_result();
-            $user = $result->fetch_object();
 
-            return $user->bewertung;
+            return $result;
         }
     }
     public function checkBewerterBild($bewerterId,$bildId) {

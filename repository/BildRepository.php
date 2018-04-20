@@ -15,7 +15,6 @@ class BildRepository extends Repository
      */
     protected $tableName = 'Bild';
 
-
     /**
      * Erstellt einen neuen benutzer mit den gegebenen Werten.
      *
@@ -107,6 +106,48 @@ class BildRepository extends Repository
             VALUES (?, 0, ?);";
         $statement = ConnectionHandler::getConnection()->prepare($query);
         $statement->bind_param('si',$file, $uid);
+        if (!$statement->execute()) {
+            throw new Exception($statement->error);
+        }
+    }
+
+    public function deleteImage($bild_id)
+    {
+        /*
+        // in der Server-Ordnerstrucktur löschen
+
+        //Zuesrt bild pfad holen:
+        $query = 'select pfad from bild where ID_Bild = ?;';
+        $statement = ConnectionHandler::getConnection()->prepare($query);
+        $statement->bind_param('i',$bild_id);
+        if (!$statement->execute()) {
+            throw new Exception($statement->error);
+        }
+        $result = $statement->get_result();
+        $bild = $result->fetch_object();
+        $pfad = $bild->pfad; //Pfad vom Bild
+
+        //Bild im Image Ordner löschen
+        $dir = "images";
+        $dirHandle = opendir($dir);
+        while ($file = readdir($dirHandle)) {
+            if($file==$data) {
+                unlink($file);
+            }
+        }
+        */
+
+        //Alle bewertungen zum bild löschen:
+        $query = 'Delete from bewertung where Bild_id = ?;';
+        $statement = ConnectionHandler::getConnection()->prepare($query);
+        $statement->bind_param('i',$bild_id);
+        if (!$statement->execute()) {
+            throw new Exception($statement->error);
+        }
+        // in der datenbank löschen
+        $query = 'delete FROM bild WHERE ID_Bild = ?;';
+        $statement = ConnectionHandler::getConnection()->prepare($query);
+        $statement->bind_param('i',$bild_id);
         if (!$statement->execute()) {
             throw new Exception($statement->error);
         }

@@ -9,7 +9,7 @@
                 echo "<div class=\"imgbox-hover hover-box\">";
                 $profilBild = $imageRepository->getProfilBild($_SESSION['uid']);
                 echo "<img src=/{$profilBild}>";
-                echo "<a href='/profil/doUpdate'><div class=\"centered\"><h3>Change Profile</h3></div>";
+                echo "<a href='/profil/doUpdate'><div class=\"centered\"><h3>Change Profile</h3></div></a>";
                 echo "</div>";
                 echo "<h2>" . $_SESSION['benutzername'] . "</h2>";
                 echo "</div>";
@@ -20,10 +20,8 @@
                 while($bild = $bilder->fetch_object())
                 {
                     echo "<div class='card imgbox-hover'>
-                        <img src='/{$bild->pfad}'/>
-                        <div class='centered lead'><span class='glyphicon glyphicon-trash'></span></div>
-                        <p>Rating : 10</p>
-                    </div>";
+                        <img src='/{$bild->pfad}'/><a href='/profil/deleteImage?bild_id={$bild->ID_Bild}'><div class='centered lead'><span class='glyphicon glyphicon-trash'></span></div></a>
+                        </div>";
                 }
                 ?>
                 <label for="uploadImage">
