@@ -15,7 +15,7 @@
             '</div>';
             }
             echo $form->submit()->label('bestätigen')->name('updateUser');
-            echo "Funktioniert leider noch nicht";
+            echo "Funktioniert leider noch nicht alles :(";
             $form->end();
         ?>
         </div>

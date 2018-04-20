@@ -152,4 +152,22 @@ class BildRepository extends Repository
             throw new Exception($statement->error);
         }
     }
+
+    public function getAverageRate($uid)
+    {
+        $query = 'select cast(avg(bew.bewertung) as decimal(6, 1)) as durchschnitt from bild as bi join benutzer as ben
+        on bi.inhaber_id = ben.ID_Ben
+        join bewertung as bew
+        on bew.Bild_id = bi.ID_Bild
+        where ben.ID_Ben = ?;';
+        $statement = ConnectionHandler::getConnection()->prepare($query);
+        $statement->bind_param('i', $uid);
+        if (!$statement->execute()) {
+            throw new Exception($statement->error);
+        }
+        $result = $statement->get_result();
+        $ersteZeile = $result->fetch_object();
+        $average = $ersteZeile->durchschnitt;
+        return $average;
+    }
 }

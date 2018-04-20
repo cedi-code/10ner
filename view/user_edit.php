@@ -3,15 +3,12 @@
         <div class="content profil-content">
             <?php
                 require_once '../repository/BildRepository.php';
-                $imageRepository = new BildRepository();
-
                 echo "<div style='margin-bottom: 5%'>";
                 echo "<div class=\"imgbox-hover hover-box\">";
-                $profilBild = $imageRepository->getProfilBild($_SESSION['uid']);
                 echo "<img src=/{$profilBild}>";
                 echo "<a href='/profil/doUpdate'><div class=\"centered\"><h3>Change Profile</h3></div></a>";
                 echo "</div>";
-                echo "<h2>" . $_SESSION['benutzername'] . "</h2>";
+                echo "<h2>" . $_SESSION['benutzername'] . ": " . $averageRate . "</h2>";
                 echo "</div>";
                 echo "<h3>Bilder von ". $_SESSION['benutzername'] . "</h3>";
             ?>

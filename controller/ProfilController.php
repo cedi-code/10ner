@@ -28,6 +28,8 @@ class ProfilController
             $view->title =  $_SESSION['benutzername'];
             $view->heading = $_SESSION['benutzername'];
             $view->bilder = $imageRepository->getEveryImage($_SESSION['uid']);
+            $view->profilBild = $imageRepository->getProfilBild($_SESSION['uid']);
+            $view->averageRate = $imageRepository->getAverageRate($_SESSION['uid']);
             $view->display();
         }else {
             session_destroy();
