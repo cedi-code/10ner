@@ -16,7 +16,7 @@
                     </table>";
                     $form = new Form('/rate/ratePB', 'POST',  'multipart/form-data');
                     echo "<input id=\"range\"type=\"range\" min=\"1\" max=\"10\" value=\"5\" name=\"bewertung\" class=\"range\"/>";
-                    echo  "<input type=\"hidden\" name=\"bid\" value=\" ". $bildId . "\">";
+                    echo  "<input type=\"hidden\" name=\"bid\" value=\"". $bildId . "\">";
                     echo  $form->submit()->label('bestätigen')->name('submitRate');
 
                     $form->end();
