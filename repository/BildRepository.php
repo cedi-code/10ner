@@ -91,6 +91,7 @@ class BildRepository extends Repository
 
     public function uploadImage($file, $email)
     {
+        //Bild im Bilder ordner speichern
         $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
         $timestamp = time();
         $file_destination = "images/" . $email . $timestamp . '.' . $ext;
@@ -98,6 +99,19 @@ class BildRepository extends Repository
             echo $file_destination;
         }
         return $file_destination;
+    }
+
+    public function update($uid, $file)
+    {
+        //Bild in der datenbank tauschen
+        $query = "update bild
+                    SET pfad = ?
+                    WHERE inhaber_id = ?;";
+        $statement = ConnectionHandler::getConnection()->prepare($query);
+        $statement->bind_param('si',$file, $uid);
+        if (!$statement->execute()) {
+            throw new Exception($statement->error);
+        }
     }
 
     public function addImage($uid, $file)

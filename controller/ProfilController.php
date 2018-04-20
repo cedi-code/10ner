@@ -62,9 +62,9 @@ class ProfilController
             }
             else {
                 //Bild im Ordner /images/ abspeichern
-                $file = $imageRepository->uploadImage($_FILES['profilbild'], $_SESSION['email']);
+                $file = $imageRepository->uploadImage($_FILES['updateBild'], $_SESSION['email']);
                 //Benutzer in der Datenbank updaten (in der tabelle benutzer)
-                $uid = $userRepository->update($benutzername, $passwort, $file);
+                $uid = $userRepository->update($benutzername, $passwort);
                 //Bild in der Datenbank updaten (in der tabelle bild)
                 $imageRepository->update($uid, $file);
             }

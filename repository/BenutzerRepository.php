@@ -94,8 +94,18 @@ class BenutzerRepository extends Repository
         return $row;
     }
 
-    public function update()
+    public function update($benutzername, $passwort)
     {
-        var_dump($_SESSION);
+        $passwort = password_hash($passwort, PASSWORD_DEFAULT);
+        $_SESSION['benutzername'] = $benutzername;
+        $query = "update benutzer
+            SET benutzername = ?,
+            passwort = ?
+            WHERE ID_Ben = ?;";
+        $statement = ConnectionHandler::getConnection()->prepare($query);
+        $statement->bind_param('sss', $benutzername, $passwort, $_SESSION['uid']);
+        if (!$statement->execute()) {
+            throw new Exception($statement->error);
+        }
     }
 }

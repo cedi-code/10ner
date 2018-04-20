@@ -7,7 +7,7 @@
 
             echo $form->text()->label('neuer Benutzername')->name('benutzername');
             echo $form->passwort()->label('neues Passwort')->name('passwort');
-            echo $form->file()->label('neues Profilbild')->name('profilbild');
+            echo $form->file()->label('neues Profilbild')->name('updateBild');
             
             foreach($this->errors as $error) {
                 echo '<div class="alert alert-danger">'
