@@ -2,9 +2,13 @@
     <div class="introBox">
         <div class="content profil-content">
             <?php
+                require_once '../repository/BildRepository.php';
+                $imageRepository = new BildRepository();
+
                 echo "<div style='margin-bottom: 5%'>";
                 echo "<div class=\"imgbox-hover hover-box\">";
-                echo "<img src=\"/images/camille.jpg\"/>";
+                $profilBild = $imageRepository->getProfilBild($_SESSION['uid']);
+                echo "<img src=/{$profilBild}>";
                 echo "<a href='/profil/update'><div class=\"centered\"><h3>Change Profile</h3></div>";
                 echo "</div>";
                 echo "<h2>" . $_SESSION['benutzername'] . "</h2>";
