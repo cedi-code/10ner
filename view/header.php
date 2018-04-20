@@ -38,7 +38,7 @@
                 <li><a href="/rate">Rate</a></li>
                 <li><a href="/">Explore</a></li>
                 <?php
-                    @session_start();
+
                     if(isset($_SESSION['uid'])) {
                         echo "<li><a href=\"/profil/index\">" . $_SESSION['benutzername'] . "</a></li>";
                         echo "<li><a href=\"/profil/logout\">logout</a></li>";

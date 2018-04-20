@@ -17,7 +17,7 @@ class ProfilController
         // In diesem Fall möchten wir dem Benutzer die View mit dem Namen
         //   "default_index" rendern. Wie das genau funktioniert, ist in der
         //   View Klasse beschrieben.
-        @session_start();
+
         if(isset($_SESSION['uid'])) {
             if(isset($_POST['upload'])) {
                 $file = $imageRepository->uploadImage($_FILES['uploadImage'], $_SESSION['email']);
@@ -35,14 +35,14 @@ class ProfilController
         }
     }
     public function logout() {
-        session_start();
+        @session_start();
         session_destroy();
         header("Location: /login");
     }
 
     public function doUpdate()
     {
-        @session_start();
+
         $errors = [];
         if ($_POST['updateUser']) {
 
