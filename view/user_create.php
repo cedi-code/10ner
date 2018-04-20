@@ -16,7 +16,7 @@
 			'</div>';
 			}
 			echo $form->submit()->label('Benutzer erstellen')->name('sendUser');
-
+            echo "<a style='float: left' href=\"/login\">go to Login</a>";
 			$form->end();
 		?>
         </div>

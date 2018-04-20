@@ -36,7 +36,7 @@
             <ul class="nav navbar-nav pull-right">
                 <li><a href="/">Home</a></li>
                 <li><a href="/rate">Rate</a></li>
-                <li><a href="/">Explore</a></li>
+                <li><a href="/explore">Explore</a></li>
                 <?php
 
                     if(isset($_SESSION['uid'])) {

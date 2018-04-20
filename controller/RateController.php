@@ -44,7 +44,7 @@ class RateController
             $view->display();
 
         }else {
-            header("Location: /login");
+            header("Location: /benutzer/index");
         }
 
     }

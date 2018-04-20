@@ -74,6 +74,10 @@ header {
   padding-bottom:0%;
   color: black;
 }
+.indexContentOr a {
+  text-decoration: none;
+  color: black;
+}
 .content {
   max-width: 50%;
   margin: 0 auto;
@@ -265,7 +269,7 @@ header {
 @media screen and (max-width: 900px) {
   .content {
     max-width: 50%;
-    padding-bottom: 50%;
+    padding-bottom: 30%;
   }
   .profil-content {
     padding-bottom:20%;
