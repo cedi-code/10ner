@@ -34,10 +34,10 @@ class RateController
             $isBewertet = $raterepo->checkBewerterBild($_SESSION['uid'],$bid);
             if($isBewertet > 0){
                 $view->gleich = true;
+                $view->bildPfad = $bildrepo->getProfilBild($uid->ID_Ben);
             }else {
                 $view->gleich = false;
                 $view->bildId = $bid;
-                $view->bewerterId = $uid->ID_Ben;
                 $view->bildPfad = $bildrepo->getProfilBild($uid->ID_Ben);
             }
 
@@ -53,13 +53,13 @@ class RateController
             $raterepo = new BewertungRepository();
 
             $rate = $_POST['bewertung'];
-            $bewerter = $_POST['buid'];
+            $bewerter = $_SESSION['uid'];
             $bid = $_POST['bid'];
 
             $raterepo->addBewertung($bid,$bewerter,$rate);
 
         }
-        header("Location: /rate/index");
+        header("Location: /rate");
     }
 
 }
