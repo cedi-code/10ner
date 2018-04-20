@@ -51,8 +51,7 @@ class BildRepository extends Repository
             throw new Exception($statement->error);
         }
         $result = $statement->get_result();
-        $Bilder = $result->fetch_object();
-        return $Bilder->pfad; 
+        return $result;
     }
 
     public function getProfilBild($uid) //fertig
@@ -72,23 +71,6 @@ class BildRepository extends Repository
 
         return $user->pfad;
     }
-    public function getProfilBildId($uid) //fertig
-    {
-        $query = 'select * from bild as bi join benutzer as be
-                on bi.inhaber_id = be.ID_Ben
-                where be.ID_Ben = ?
-                and bi.istProfilBild = true;';
-        $statement = ConnectionHandler::getConnection()->prepare($query);
-
-        $statement->bind_param('i', $uid);
-        if (!$statement->execute()) {
-            throw new Exception($statement->error);
-        }
-        $result = $statement->get_result();
-        $user = $result->fetch_object();
-
-        return $user->ID_Bild;
-    }
 
     public function uploadImage($file, $email)
     {
@@ -101,21 +83,14 @@ class BildRepository extends Repository
         return $file_destination;
     }
 
-    public function update($uid, $file)
+    public function addImage($uid, $file)
     {
-        $query = "
-            UPDATE bild
-            SET pfad = ?
-            WHERE inhaber_id = ?
-            and istProfilBild = true;";
+        $query = "insert into bild (pfad, istProfilBild, inhaber_id)
+            VALUES (?, 0, ?);";
         $statement = ConnectionHandler::getConnection()->prepare($query);
-        $statement->bind_param('ss',$uid , $file);
+        $statement->bind_param('si',$file, $uid);
         if (!$statement->execute()) {
             throw new Exception($statement->error);
         }
-        $result = $statement->get_result();
-        $Bilder = $result->fetch_object();
-        
-        return $Bilder->pfad; 
     }
 }

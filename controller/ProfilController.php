@@ -20,15 +20,17 @@ class ProfilController
         @session_start();
         if(isset($_SESSION['uid'])) {
             if(isset($_POST['upload'])) {
-                $file = $imageRepository->uploadImage($_FILES['profilbild'], $_SESSION['email']);
-                $imageRepository->update($_SESSION['uid'], $file);
+                $file = $imageRepository->uploadImage($_FILES['uploadImage'], $_SESSION['email']);
+                $imageRepository->addImage($_SESSION['uid'], $file);
             }
+
             $view = new View('user_edit');
             $view->title =  $_SESSION['benutzername'];
             $view->heading = $_SESSION['benutzername'];
+            $view->bilder = $imageRepository->getEveryImage($_SESSION['uid']);
             $view->display();
         }else {
-                    session_destroy();
+            session_destroy();
             header("Location: /");
         }
     }
