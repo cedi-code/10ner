@@ -62,7 +62,8 @@ class BildRepository extends Repository
                 where be.ID_Ben = ?
                 and bi.istProfilBild = true;';
         $statement = ConnectionHandler::getConnection()->prepare($query);
-        $statement->bind_param('s', $uid);
+
+        $statement->bind_param('i', $uid);
         if (!$statement->execute()) {
             throw new Exception($statement->error);
         }
@@ -70,6 +71,23 @@ class BildRepository extends Repository
         $user = $result->fetch_object();
 
         return $user->pfad;
+    }
+    public function getProfilBildId($uid) //fertig
+    {
+        $query = 'select * from bild as bi join benutzer as be
+                on bi.inhaber_id = be.ID_Ben
+                where be.ID_Ben = ?
+                and bi.istProfilBild = true;';
+        $statement = ConnectionHandler::getConnection()->prepare($query);
+
+        $statement->bind_param('i', $uid);
+        if (!$statement->execute()) {
+            throw new Exception($statement->error);
+        }
+        $result = $statement->get_result();
+        $user = $result->fetch_object();
+
+        return $user->ID_Bild;
     }
 
     public function uploadImage($file, $email)

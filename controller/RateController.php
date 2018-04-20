@@ -18,7 +18,7 @@ class RateController
         //   View Klasse beschrieben.
         $bildrepo = new BildRepository();
         $usrrepo = new BenutzerRepository();
-        $raterepo = new RateController();
+        $raterepo = new BewertungRepository();
 
         @session_start();
         if(isset($_SESSION['uid'])) {
@@ -31,8 +31,10 @@ class RateController
             $view->heading = 'Rate';
 
             $uid = $usrrepo->getRandomId();
-            // if($raterepo->checkBewerterBild($_SESSION['uid'],$bildId))
-            // $view->bildPfad = $bildrepo->getProfilBild($uid);
+            $result = $raterepo->checkBewerterBild($_SESSION['uid'],$bildrepo->getProfilBildId($uid));
+            var_dump();
+            // if($raterepo->checkBewerterBild($_SESSION['uid'],$bildrepo->getProfilBildId($uid)))
+            $view->bildPfad = $bildrepo->getProfilBild($uid->ID_Ben);
             $view->display();
         }else {
             header("Location: /login");
