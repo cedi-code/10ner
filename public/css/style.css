@@ -106,6 +106,10 @@ header {
 }
 .col-md-4 input[type=submit] {
   background-color: #6202FF;
+  margin: 10px 0px;
+}
+.col-md-4 input[type=submit]:hover {
+  background-color: #8f4bfd;
 }
 .content .imgbox {
   margin-right: 5%;
