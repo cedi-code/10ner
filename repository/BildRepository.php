@@ -166,6 +166,7 @@ class BildRepository extends Repository
             throw new Exception($statement->error);
         }
         $result = $statement->get_result();
+        
         $ersteZeile = $result->fetch_object();
         $average = $ersteZeile->durchschnitt;
         return $average;
