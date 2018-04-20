@@ -45,7 +45,7 @@ class BenutzerController
             }
             else {
                 //Bild im Ordner /images/ abspeichern
-                $file = $this->uploadImage($_FILES['profilbild'], $email);
+                $file = $imageRepository->uploadImage($_FILES['profilbild'], $email);
                 //Benutzer in der Datenbank erfassen (in der tabelle benutzer)
                 $uid = $userRepository->create($benutzername, $email, $passwort);
                 //Bild in der Datenbank erfassen (in der tabelle bild)
@@ -67,17 +67,6 @@ class BenutzerController
 
     }
 
-    public function uploadImage($file, $email)
-    {
-        $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
-        $timestamp = time();
-        $file_destination = "images/" . $email . $timestamp . '.' . $ext;
-        if (move_uploaded_file($file['tmp_name'], $file_destination)) {
-            echo $file_destination;
-        }
-        return $file_destination;
-    }
-
     public function delete()
     {
         $userRepository = new BenutzerRepository();
@@ -85,10 +74,5 @@ class BenutzerController
 
         // Anfrage an die URI /user weiterleiten (HTTP 302)
         header('Location: /benutzer');
-    }
-
-    public function doUpdate()
-    {
-        
     }
 }

@@ -9,7 +9,7 @@
                 echo "<div class=\"imgbox-hover hover-box\">";
                 $profilBild = $imageRepository->getProfilBild($_SESSION['uid']);
                 echo "<img src=/{$profilBild}>";
-                echo "<a href='/profil/update'><div class=\"centered\"><h3>Change Profile</h3></div>";
+                echo "<a href='/profil/doUpdate'><div class=\"centered\"><h3>Change Profile</h3></div>";
                 echo "</div>";
                 echo "<h2>" . $_SESSION['benutzername'] . "</h2>";
                 echo "</div>";
@@ -27,8 +27,8 @@
 
                     </div>
                 </label>
-                <form action="/profil" method="post">
-                    <input id="uploadImage" type="file" name="uploadImage"/>
+                <form action="/profil" method="post" enctype="multipart/form-data">
+                    <input id="uploadImage" type="file"  name="uploadImage"/>
                     <input type="submit" id="submitUpload" name="upload"/>
                 </form>
             </div>

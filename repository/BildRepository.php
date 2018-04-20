@@ -72,6 +72,17 @@ class BildRepository extends Repository
         return $user->pfad;
     }
 
+    public function uploadImage($file, $email)
+    {
+        $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
+        $timestamp = time();
+        $file_destination = "images/" . $email . $timestamp . '.' . $ext;
+        if (move_uploaded_file($file['tmp_name'], $file_destination)) {
+            echo $file_destination;
+        }
+        return $file_destination;
+    }
+
     public function update($uid, $file)
     {
         $query = "
@@ -86,6 +97,7 @@ class BildRepository extends Repository
         }
         $result = $statement->get_result();
         $Bilder = $result->fetch_object();
+        
         return $Bilder->pfad; 
     }
 }

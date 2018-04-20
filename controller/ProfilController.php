@@ -1,5 +1,6 @@
 <?php
 require_once '../repository/BenutzerRepository.php';
+require_once '../repository/BildRepository.php';
 /**
  * Created by PhpStorm.
  * User: bgirac
@@ -12,14 +13,15 @@ class ProfilController
     public function index()
     {
         $userRepository = new BenutzerRepository();
+        $imageRepository = new BildRepository();
         // In diesem Fall möchten wir dem Benutzer die View mit dem Namen
         //   "default_index" rendern. Wie das genau funktioniert, ist in der
         //   View Klasse beschrieben.
         @session_start();
         if(isset($_SESSION['uid'])) {
             if(isset($_POST['upload'])) {
-                // TODO bild hochladen? und aktuallisieren...
-                // $_POST['uploadImage'];
+                $file = $imageRepository->uploadImage($_FILES['profilbild'], $_SESSION['email']);
+                $imageRepository->update($_SESSION['uid'], $file);
             }
             $view = new View('user_edit');
             $view->title =  $_SESSION['benutzername'];
@@ -36,8 +38,9 @@ class ProfilController
         header("Location: /login");
     }
 
-    public function update()
+    public function doUpdate()
     {
+        @session_start();
         $errors = [];
         if ($_POST['updateUser']) {
 
@@ -55,7 +58,7 @@ class ProfilController
             }
             else {
                 //Bild im Ordner /images/ abspeichern
-                $file = $this->uploadImage($_FILES['profilbild'], $_SESSION['email']);
+                $file = $imageRepository->uploadImage($_FILES['profilbild'], $_SESSION['email']);
                 //Benutzer in der Datenbank updaten (in der tabelle benutzer)
                 $uid = $userRepository->update($benutzername, $passwort, $file);
                 //Bild in der Datenbank updaten (in der tabelle bild)

@@ -92,6 +92,10 @@ class BenutzerRepository extends Repository
         $result = $statement->get_result();
         $row = $result->fetch_object();
         return $row;
+    }
 
+    public function update()
+    {
+        var_dump($_SESSION);
     }
 }

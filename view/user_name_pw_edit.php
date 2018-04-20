@@ -3,7 +3,7 @@
         <div class="content colorMainBlue">
         <h2>Benutzer bearbeiten</h2>
         <?php
-            $form = new Form('/profil/index', 'POST',  'multipart/form-data');
+            $form = new Form('/profil/doUpdate', 'POST',  'multipart/form-data');
 
             echo $form->text()->label('neuer Benutzername')->name('benutzername');
             echo $form->passwort()->label('neues Passwort')->name('passwort');
@@ -15,7 +15,7 @@
             '</div>';
             }
             echo $form->submit()->label('bestätigen')->name('updateUser');
-
+            echo "Funktioniert leider noch nicht";
             $form->end();
         ?>
         </div>
