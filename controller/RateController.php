@@ -16,12 +16,16 @@ class RateController
         // In diesem Fall möchten wir dem Benutzer die View mit dem Namen
         //   "default_index" rendern. Wie das genau funktioniert, ist in der
         //   View Klasse beschrieben.
+        $bildrepo = new BildRepository();
+        $usrrepo = new BenutzerRepository();
+        $raterepo = new RateController();
+
         @session_start();
         if(isset($_SESSION['uid'])) {
-            $bildrepo = new BildRepository();
-            $usrrepo = new BenutzerRepository();
-            $raterepo = new RateController();
+            if(isset($_POST['bewertung'])) {
 
+
+            }
             $view = new View('rateView');
             $view->title = 'Rate';
             $view->heading = 'Rate';
@@ -31,7 +35,7 @@ class RateController
             // $view->bildPfad = $bildrepo->getProfilBild($uid);
             $view->display();
         }else {
-            // header("Location: /login");
+            header("Location: /login");
         }
 
     }
