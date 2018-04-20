@@ -96,7 +96,6 @@ class BildRepository extends Repository
         $timestamp = time();
         $file_destination = "images/" . $email . $timestamp . '.' . $ext;
         if (move_uploaded_file($file['tmp_name'], $file_destination)) {
-            echo $file_destination;
         }
         return $file_destination;
     }
@@ -106,7 +105,8 @@ class BildRepository extends Repository
         //Bild in der datenbank tauschen
         $query = "update bild
                     SET pfad = ?
-                    WHERE inhaber_id = ?;";
+                    WHERE inhaber_id = ?
+                    and istProfilBild = 1;";
         $statement = ConnectionHandler::getConnection()->prepare($query);
         $statement->bind_param('si',$file, $uid);
         if (!$statement->execute()) {
