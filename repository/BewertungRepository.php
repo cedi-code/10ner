@@ -12,6 +12,13 @@ class BewertungRepository extends Repository
 
     protected $tableName = 'bewertung';
 
+    /**
+     * @param $bildId
+     * @param $bewerterId ist die id des Users der die Bewertung macht
+     * @param $bewertung
+     * @return int die Bewertung id
+     * @throws Exception
+     */
     public function addBewertung($bildId, $bewerterId, $bewertung) {
 
         $query = "INSERT INTO {$this->tableName} ( Bild_id, bewerter_id, bewertung) VALUES (?, ?, ?)";
@@ -25,6 +32,12 @@ class BewertungRepository extends Repository
 
         return $statement->insert_id;
     }
+
+    /**
+     * @param $bildID
+     * @return bool|mysqli_result gibt alle Daten
+     * @throws Exception
+     */
     public function getBewertungFromBid($bildID) {{
             $query = "select * from {$this->tableName}  WHERE Bild_id = ?";
             $statement = ConnectionHandler::getConnection()->prepare($query);

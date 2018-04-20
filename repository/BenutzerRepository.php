@@ -44,6 +44,13 @@ class BenutzerRepository extends Repository
 
         return $statement->insert_id;
     }
+
+    /**
+     * überprüft ob die Email schon in der Datenbank ist
+     * @param $email die Email des User
+     * @return int  anzahl der zurückgegebenen rows des SQL query
+     * @throws Exception
+     */
     public function checkEmail($email) {
         $queryMail = "SELECT * FROM $this->tableName WHERE  email = ?";
         $statement = ConnectionHandler::getConnection()->prepare($queryMail);
@@ -59,6 +66,13 @@ class BenutzerRepository extends Repository
         return $resultCheck;
 
     }
+
+    /**
+     * @param $pw das eingegebene Passwort
+     * @param $email die eingegeben Email
+     * @return bool|object|stdClass wenn das Passwort falsch ist, gibt es False zurück, wenn richtig, die Userdaten
+     * @throws Exception
+     */
     public function checkPW($pw,$email) {
         $queryMail = "SELECT * FROM $this->tableName WHERE  email = ?";
         $statement = ConnectionHandler::getConnection()->prepare($queryMail);
@@ -81,6 +95,11 @@ class BenutzerRepository extends Repository
             return false;
         }
     }
+
+    /**
+     * @return object|stdClass gibt Random Userdaten zurück;
+     * @throws Exception
+     */
     public function getRandomId() {
         $query = "SELECT ID_Ben FROM {$this->tableName} ORDER BY RAND() LIMIT 1";
 
@@ -94,6 +113,12 @@ class BenutzerRepository extends Repository
         return $row;
     }
 
+    /**
+     * @param $benutzername
+     * @param $passwort
+     * @throws Exception
+     * aktuallisiert den User je nach parameter
+     */
     public function update($benutzername, $passwort)
     {
         $passwort = password_hash($passwort, PASSWORD_DEFAULT);

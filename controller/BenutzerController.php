@@ -7,18 +7,21 @@ require_once '../repository/BildRepository.php';
  */
 class BenutzerController
 {
+    // zeigt die Seite user_create an
     public function index()
     {
         $view = new View('user_create');
-        $view->title = 'Benutzer erstellen';
-        $view->heading = 'Benutzer erstellen';
+        $view->title = 'create User';
+        $view->heading = 'create User';
         $view->errors = [];
         $view->display();
     }
 
+    // hollt die Daten vom Form ein und überprüft diese nach Fehler
     public function doCreate()
     {
         $errors = [];
+        // überprüft ob der submitbutton sendUser betätigt wurde
         if ($_POST['sendUser']) {
 
             $benutzername = $_POST['benutzername'];
@@ -28,27 +31,30 @@ class BenutzerController
             $userRepository = new BenutzerRepository();
             $imageRepository = new BildRepository();
 
+            // fehlermeldungen werden überprüft
             if(
                 empty($benutzername) || 
                 empty($email) || 
                 empty($passwort)
             ){
-                $errors['required_missing'] = 'Bitte fülle alle Formularfelder aus.';
+                $errors['required_missing'] = 'Pleae Fill in the obligatory fields.';
             } else if ($userRepository->checkEmail($email) > 0) {
-                $errors['email_exists'] = 'Diese Email existiert bereits.';
+                $errors['email_exists'] = 'This E-mail already exists.';
             }
             else if (strlen($benutzername) < 3) {
-                $errors['name_lenght'] = 'Name brauch mindestens 3 Zeichen';
+                $errors['name_lenght'] = 'Your Nickname needs at least 3 characters';
             }
             else if (strlen($passwort) < 3) {
-                $errors['pw_lenght'] = 'Passwort brauch mindestens 3 Zeichen';
+                $errors['pw_lenght'] = 'Your Password needs at least 3 characters';
             }
             else {
-                //Bild im Ordner /images/ abspeichern
+                //Speichert und ändert den Pfad des Profilbildes in der Tabelle Bilder
                 $file = $imageRepository->uploadImage($_FILES['profilbild'], $email);
-                //Benutzer in der Datenbank erfassen (in der tabelle benutzer)
+
+                // Die Userdaten werden in der Datenbank gespeichert
                 $uid = $userRepository->create($benutzername, $email, $passwort);
-                //Bild in der Datenbank erfassen (in der tabelle bild)
+
+                // Erstellt einen Pfad im rootdirectory für das Bild wo es dann hochgeladen wird.
                 $imageRepository->create($file, true, $uid, null);
             }
         }
@@ -67,12 +73,5 @@ class BenutzerController
 
     }
 
-    public function delete()
-    {
-        $userRepository = new BenutzerRepository();
-        $userRepository->deleteById($_GET['id']);
 
-        // Anfrage an die URI /user weiterleiten (HTTP 302)
-        header('Location: /benutzer');
-    }
 }
