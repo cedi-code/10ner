@@ -6,7 +6,8 @@
             <?php
 
                 if($gleich) {
-                    echo "<h2 style='color: black'>Diese Bild haben sie schon Bewertet.</h2>";
+                    echo "<div class=\"rateImage\" style=\"background-image: url($bildPfad)\"></div>";
+                    echo "<h4 style='color: black'>Diese Bild haben Sie schon Bewertet.</h4>";
                     echo "<a href='/rate' style='color:#000;'>erneut Versuchen</a>";
                 }else {
                     echo "<div class=\"rateImage\" style=\"background-image: url($bildPfad)\"></div>";
@@ -16,7 +17,6 @@
                     $form = new Form('/rate/ratePB', 'POST',  'multipart/form-data');
                     echo "<input id=\"range\"type=\"range\" min=\"1\" max=\"10\" value=\"5\" name=\"bewertung\" class=\"range\"/>";
                     echo  "<input type=\"hidden\" name=\"bid\" value=\" ". $bildId . "\">";
-                    echo  "<input type=\"hidden\" name=\"buid\" value=\" ". $bewerterId . "\">";
                     echo  $form->submit()->label('bestätigen')->name('submitRate');
 
                     $form->end();
