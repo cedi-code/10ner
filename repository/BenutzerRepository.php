@@ -82,8 +82,10 @@ class BenutzerRepository extends Repository
         }
     }
     public function getRandomId() {
-        $query = "SELECT ID_Bew FROM {$this->tableName} ORDER BY RAND() LIMIT 1";
+        $query = "SELECT ID_Ben FROM {$this->tableName} ORDER BY RAND() LIMIT 1";
+
         $statement = ConnectionHandler::getConnection()->prepare($query);
+
         if (!$statement->execute()) {
             throw new Exception($statement->error);
         }

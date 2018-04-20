@@ -30,7 +30,7 @@ class RateController
             $view->title = 'Rate';
             $view->heading = 'Rate';
 
-            // $uid = $usrrepo->getRandomId();
+            $uid = $usrrepo->getRandomId();
             // if($raterepo->checkBewerterBild($_SESSION['uid'],$bildId))
             // $view->bildPfad = $bildrepo->getProfilBild($uid);
             $view->display();
